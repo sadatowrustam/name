@@ -14,10 +14,7 @@ module.exports = {
             link: {
                 type: DataTypes.STRING
             },
-            image_tm: {
-                type: DataTypes.STRING
-            },
-            image_ru: {
+            image: {
                 type: DataTypes.STRING
             },
             createdAt: {

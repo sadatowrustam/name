@@ -7,13 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         static associate() {}
     }
     Banners.init({
-        banner_id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4
-        },
         link: DataTypes.STRING,
-        image_tm: DataTypes.STRING,
-        image_ru: DataTypes.STRING
+        image: DataTypes.STRING,
     }, {
         sequelize,
         tableName: "banners",

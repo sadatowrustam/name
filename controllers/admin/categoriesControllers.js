@@ -41,7 +41,7 @@ exports.getAllCategories = catchAsync(async(req, res, next) => {
         ]
     }
     var keywordsArray = ["%%"]
-    if (keyword != 'undefined') {
+    if (keyword &&keyword != 'undefined') {
         keywordsArray = []
         keyword = keyword.toLowerCase();
         keywordsArray.push('%' + keyword + '%');
@@ -120,9 +120,9 @@ exports.deleteCategory = catchAsync(async(req, res, next) => {
     return res.status(200).send('Successfully Deleted');
 });
 exports.getOneCategory = catchAsync(async(req, res, next) => {
-    let { category_id } = req.params
+    let { id } = req.params
     const category = await Categories.findOne({
-        where: { category_id },
+        where: { id },
         include: {
             model: Subcategories,
             as: "category_subcategories"

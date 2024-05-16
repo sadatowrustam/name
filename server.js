@@ -45,8 +45,8 @@ app.use(fileUpload())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json({ limit: "50mb" }))
 app.use(express.static(`${__dirname}/static`));
-app.use('/admin', require('./routes/admin/adminRouter'));
-app.use('/public', require('./routes/public/publicRouter'));
+app.use('/api/admin', require('./routes/admin/adminRouter'));
+app.use('/api/public', require('./routes/public/publicRouter'));
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
 });

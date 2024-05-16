@@ -11,7 +11,7 @@ const {
     Categoriesbrands,
     Images
 } = require('../../models');
-
+const {v4}=require("uuid")
 exports.addBrand = catchAsync(async(req, res, next) => {
     const newBrand = await Brands.create(req.body);
     return res.status(201).send(newBrand);
@@ -179,21 +179,12 @@ exports.deleteBrandCategory = catchAsync(async(req, res, next) => {
     return res.status(200).send('Successfully Deleted');
 });
 exports.uploadBrandImage = catchAsync(async(req, res, next) => {
-    const brand_id = req.params.id;
-    const updatedBrand = await Brands.findOne({ where: { brand_id } });
     req.files = Object.values(req.files)
-
-    if (!updatedBrand)
-        return next(new AppError('Brand did not found with that ID', 404));
-    const image = `${brand_id}.webp`;
+    const image = `${v4()}.webp`;
     const photo = req.files[0].data
     let buffer = await sharp(photo).webp().toBuffer()
     await sharp(buffer).toFile(`static/${image}`);
-
-    await updatedBrand.update({
-        image,
-    });
-    return res.status(201).send(updatedBrand);
+    return res.send(image)
 });
 exports.getBrand = catchAsync(async(req, res, next) => {
     const brand = await Brands.findOne({ where: { brand_id: req.params.id }, include: { model: Categories, as: "brand_categories" } })

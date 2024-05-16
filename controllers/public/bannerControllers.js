@@ -14,12 +14,12 @@ exports.getAllBanners = catchAsync(async(req, res) => {
         offset,
     });
 
-    return res.status(200).send({ banners });
+    return res.status(200).send( banners );
 });
 
 exports.getBanner = catchAsync(async(req, res, next) => {
     const banner = await Banners.findOne({
-        where: { banner_id: req.params.id },
+        where: { id: req.params.id },
     });
 
     if (!banner)

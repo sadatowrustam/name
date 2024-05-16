@@ -8,10 +8,6 @@ module.exports = {
                 primaryKey: true,
                 type: DataTypes.INTEGER
             },
-            category_id: {
-                type: DataTypes.UUID,
-                defaultValue: DataTypes.UUIDV4
-            },
             name_tm: {
                 type: DataTypes.STRING,
                 allowNull: false,
